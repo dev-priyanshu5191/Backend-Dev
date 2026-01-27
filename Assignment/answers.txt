@@ -1,0 +1,5 @@
+Answer-1: 
+Synchronous:- Program will wait until the file operation is finished, then it will move to the next line 
+Asynchronous:- Program does not wait other works will happen in background and when it finishes it return via callback function
+Answer-2: 
+When our file is too large we use Streams to read the file in small chunks, so memory stay safe
