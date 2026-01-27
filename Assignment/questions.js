@@ -12,3 +12,36 @@ fs.appendFileSync(
     "utf-8"
 );
 
+fs.appendFileSync(
+    "./answers.txt",
+    "\nAnswer-3:- \nIt use to read file as a human readable text, not a binary data",
+    "utf-8"
+);
+
+fs.appendFileSync(
+    "./answers.txt",
+    "\nAnswer4:- \nENOENT: says file not exist \nEACCESS: Permission Denied \nEEXIST: File already exists",
+    "utf-8"
+);
+
+fs.appendFileSync(
+    "./answers.txt",
+    "\n Answer5:- \nDelete directory using cmd: fs.rmdirSync('folderName', {recursive:true})"
+)
+
+fs.appendFileSync(
+    "./answers.txt",
+    "\n Answer6:- \nTaking output of one stream and sending it directly ans input to another stream",
+    "utf-8"
+)
+
+fs.appendFileSync(
+    "./answers.txt",
+    "\n Answer7:- \nPrevent program crash, Better user experience, System stability",
+    "utf-8"
+)
+
+fs.appendFileSync(
+    "./answers.txt",
+    "\nAnser8:- \nwriteFile replaces the old content with the new content while appendFile used to add the data in existing file"
+)
