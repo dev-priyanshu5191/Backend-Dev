@@ -19,6 +19,7 @@ const express = require('express');
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded());
 app.get("/", (req, resp) => {
     resp.send("This is attendance home page");
 });
@@ -35,7 +36,8 @@ app.get("/attendance", (req, resp) => {
 const credentials = [
     { email: "user@gmail.com", password: "12345" },
     { email: "test@gmail.com", password: "56789" }
-];
+]; 
+// Post Request 
 app.post("/auth/register", async (req, resp) => {
     const data = req.body;
     // Check is user already exists
@@ -43,6 +45,8 @@ app.post("/auth/register", async (req, resp) => {
     if (existUser) {
         return resp.status(400).send("User already exists");
     }
+
+    // Password validation krna hai khud se 
     credentials.push(data);
     resp.send("Registation Successfull");
 });
