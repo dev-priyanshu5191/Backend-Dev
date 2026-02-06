@@ -13,6 +13,7 @@ app.get("/auth/register", (req, resp) => {
     resp.json({ message: "User Fetched successfully", credentials });
 });
 
+// PUT - modify 
 // Reset Password 
 app.put("/auth/reset", (req, resp) => {
     const { email, password, newPassword } = req.body;
@@ -36,7 +37,20 @@ app.put("/auth/forgot", (req, resp) => {
     user.password = newPassword;
     resp.json({ message: "Forgot Password successfully", user });
 });
+
+// Change E-mail 
+app.put("/auth/email", (req, resp) => {
+    const {newemail, password} = req.body;
+    const user = credentials.find(
+        (cred) => cred.password = password
+    );
+    if(!user) return resp.json({message: "Invalid User"});
+    user.email = newemail;
+    resp.json({message: "E-mail Changed Successfully", user});
+});
+
+
+// PATCH - 
 app.listen(2300, () => {
     console.log("Server started");
 });
-

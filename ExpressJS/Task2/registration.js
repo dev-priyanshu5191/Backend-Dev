@@ -12,9 +12,6 @@ app.get("/", (req, resp) => {
         </form>`
     )
 });
-app.post("/submit", (req, resp) => {
-    resp.send("")
-})
 app.listen(8100, () => {
     console.log("Server started");
 });
