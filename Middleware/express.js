@@ -24,7 +24,6 @@ app.use((req, resp, next) => {
 
 
 // Router Level Middleware  => we check authentication 
-
 const checklogin = (req, resp ,next) => {
     const islogin = false;  // true se login message dikhayega
     if(!islogin) resp.send("Enter your Credentials").status(401);
@@ -41,9 +40,8 @@ app.get("/", (req, resp) => {
 
 
 // Authentication Middleware 
-
 const authMiddleware = (req, resp, next) => {
-    const token = req.headers.authorization;
+    const token = req.headers.authorization;   // header me add krna hota hai
     if(!token) {
         return resp.status(400).json({message:"Enter your token"});
     }
@@ -53,11 +51,13 @@ const authMiddleware = (req, resp, next) => {
     next();
 };
 
+app.get("/auth", authMiddleware, (req, resp) => {
+    resp.send("Valid Credentials Loginn ....");
+});
 
 // Error handling
-
 app.use((err, req, resp, next) => {
-    console.log("Error middleware ", err.message);
+    console.error("Error middleware ", err.message);
     resp.status(500).json({message: "Internal server error"});
 });
 app.get("/error", (req, resp) => {
@@ -65,9 +65,7 @@ app.get("/error", (req, resp) => {
 });
 
 
-app.get("/auth", authMiddleware, (req, resp) => {
-    resp.send("Valid Credentials Loginn ....");
-})
+// Server Started 
 app.listen(6300, () => {
     console.log("Server started on 6300");
 });
