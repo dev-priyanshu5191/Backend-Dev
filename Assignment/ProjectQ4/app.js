@@ -5,12 +5,12 @@ app.set("view engine", "ejs");
 
 
 app.get("/", (req, res) => {
-    res.send("Home Page");
+    res.send("Home Index");
 });
 
 
 app.use((req, res) => {
-    res.status(404).render("404");
+    res.status(404).render("404 page not found");
 });
 
 
