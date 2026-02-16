@@ -1,0 +1,16 @@
+REST-API :- JSON
+GET/users :- List all Users
+GET/api/users :- List all users json Format
+GET/api/users/1 :- Get the user with id-1
+GET/api/Userssers/2 :- Get the user with id-2
+
+Dynamic path parameter
+GET/API/users/:id
+:id -> variable | Dynamic
+
+POST/users :- Create new users
+
+PATCH/users/1 :- Edit the users with id 1
+
+DELETE/users/2 :- Delete the users with id 1
+
