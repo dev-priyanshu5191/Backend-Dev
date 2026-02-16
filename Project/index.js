@@ -25,6 +25,28 @@ app.get("/api/users/:id", (req, resp) => {
     return resp.json(user);
 });
 
+app.post("/api/users", (req, resp) => {
+    // To do Create new User
+    const body = req.body;
+    users.push((body, id= users.length+1));
+    return resp.json({message: "User Created Successfully"});
+});
+
+app.patch("/api/users/:id", (req, resp) => {
+    return resp.json({message: "User Updated Successsfully"});
+});
+
+app.delete("/api/users/:id", (req, resp) => {
+    return resp.json({message: "User deleted Successfully"});
+})
 app.listen(5200, () => {
     console.log("Server Started");
 })
+
+
+// app.route("/api/users/:id")    // Second methid to use it
+// .get((req, resp) => {
+//     const id = req.params.id;
+//     const user = users.find((u) => u.id == id);
+//     return resp.json(user);
+// });
