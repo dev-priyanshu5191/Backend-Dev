@@ -1,7 +1,9 @@
 const express = require("express");
+const fs = require("fs");
 const users = require("./MOCK_DATA.json");
 const app = express();
-app.use(express.urlencoded({extended: "true"}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: "true" }));
 app.get("/api/users", (req, resp) => {
     const html = `<ul>
                 ${users.map((user) => `<li> ${user.first_name} ${user.last_name}</li>`).join("")}
@@ -28,16 +30,41 @@ app.get("/api/users/:id", (req, resp) => {
 app.post("/api/users", (req, resp) => {
     // To do Create new User
     const body = req.body;
-    users.push((body, id= users.length+1));
-    return resp.json({message: "User Created Successfully"});
+    const newuser = {
+        id: users.length + 1,
+        ...body,
+    };
+    users.push(newuser);
+
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (err) => {
+        if (err) {
+            return resp.status(500).json({ msg: "ERROR saving user" });
+        }
+        return resp.status(201).json({ msg: "successfully", user: newuser });
+    });
 });
 
 app.patch("/api/users/:id", (req, resp) => {
-    return resp.json({message: "User Updated Successsfully"});
+    const id = Number(req.params.id);
+    const body = req.body;
+    const userIndex = users.findIndex((u) => u.id === id);
+    (userIndex) = { ...users[userIndex], ...body };
+    if (userIndex === -1) {
+        return resp.status(404).json({ msg: "user not found" });
+    }
+    users[userIndex] = { ...[userIndex], ...body };
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2, (err) => {
+        if (err)
+            return resp.status(500).json({ msg: "error updating user" });
+        return resp.json({
+            msg: "user updated successfully",
+            user: users[userIndex],
+        })
+    }));
 });
 
 app.delete("/api/users/:id", (req, resp) => {
-    return resp.json({message: "User deleted Successfully"});
+    return resp.json({ message: "User deleted Successfully" });
 })
 app.listen(5200, () => {
     console.log("Server Started");
