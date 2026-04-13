@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "ejs": "^4.0.1",
@@ -9,6 +10,7 @@
     "mongodb": "^7.1.0",
     "mongoose": "^9.3.1",
     "nodemon": "^3.1.14",
+    "react": "^19.2.5",
     "session": "^0.1.0"
   }
 }
