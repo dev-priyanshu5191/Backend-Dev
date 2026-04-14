@@ -15,7 +15,6 @@ app.use(express.json());
 
 // seesion configure
 
-
 app.use(session({
     secret:"mySceretKey123",
     resave:false, //data yahan se bhej rhe h and not from json
@@ -49,9 +48,7 @@ function validatePassword(password){
     
 };
 
-
 // check login 
-
 
 function isAuthenticated (req,res,next){
     if(req.session.userId){
